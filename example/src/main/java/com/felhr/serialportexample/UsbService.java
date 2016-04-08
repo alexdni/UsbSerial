@@ -165,6 +165,16 @@ public class UsbService extends Service {
             serialPort.write(data);
     }
 
+    /*
+     * @ani
+     *
+     * This function will be called from MainActivity to read data from Serial Port
+     */
+    public void read(byte[] data){
+        if (serialPort !=null)
+            serialPort.read(mCallback);
+    }
+
     public void setHandler(Handler mHandler) {
         this.mHandler = mHandler;
     }

@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mHandler = new MyHandler(this);
-
+        final byte[] rawData = null;
         display = (TextView) findViewById(R.id.textView1);
         editText = (EditText) findViewById(R.id.editText1);
         Button sendButton = (Button) findViewById(R.id.buttonSend);
@@ -78,10 +78,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!editText.getText().toString().equals("")) {
-                    String data = editText.getText().toString();
+//                    String data = editText.getText().toString();
                     if (usbService != null) { // if UsbService was correctly binded, Send data
-                        display.append(data);
-                        usbService.write(data.getBytes());
+                        if (rawData != null) {
+                            usbService.read(rawData);
+                            display.append(rawData.toString());
+//                        usbService.write(data.getBytes());
+                        }
                     }
                 }
             }
